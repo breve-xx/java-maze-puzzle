@@ -13,6 +13,7 @@ import org.altervista.breve.maze.mapper.RoomMapper;
 import org.altervista.breve.maze.mapper.RoomMapperImpl;
 import org.altervista.breve.maze.model.Room;
 import org.altervista.breve.maze.model.RoomObject;
+import org.altervista.breve.maze.model.VisitResult;
 
 public class App {
 	
@@ -29,7 +30,8 @@ public class App {
     	objects.add(new RoomObject("Pillow"));
     	
     	final Walker walker = new WalkerImpl(map, start, objects);
-    	
-    	walker.visit();
+		final VisitResult path = walker.visit();
+		
+		path.print();
     }
 }

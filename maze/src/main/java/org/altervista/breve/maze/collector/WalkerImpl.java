@@ -7,52 +7,55 @@ import java.util.Set;
 
 import org.altervista.breve.maze.model.Room;
 import org.altervista.breve.maze.model.RoomObject;
+import org.altervista.breve.maze.model.VisitResult;
 import org.altervista.breve.maze.model.Visited;
 
 public class WalkerImpl implements Walker {
-	
-	private Map<Integer, Room> rooms;
-	private Set<Visited> visited = new HashSet<>();
-	
-	private int start;
-	
-	private Set<RoomObject> toFind = new HashSet<>();
-	
+
+	// Input
+	private final Map<Integer, Room> rooms;
+	private final int start;
+	private final Set<RoomObject> toFind = new HashSet<>();
+
+	private final Set<Visited> visited = new HashSet<>();
+
+	private final VisitResult path = new VisitResult();
+
 	public WalkerImpl(final Map<Integer, Room> rooms, final int start, final Set<RoomObject> objects) {
 		this.rooms = rooms;
 		this.start = start;
 		this.toFind.addAll(objects);
 	}
-	
-    public void visit() {
-    	visit(start);
-    }
-    
-    private void visit(final int id) {
-    	final Room room = rooms.get(id);
-    	
-    	System.out.println(room.getId() + "\t" + room.getName() + "\t" + room.getObjects());
-    	
-    	if(!room.getObjects().isEmpty()) {
-    		toFind.removeAll(room.getObjects());
-    	}
-    	
-    	System.out.println(toFind);
-    	if(toFind.isEmpty()) return;
-    	
-		visit(id, room.getNorth());
-		visit(id, room.getSouth());
-		visit(id, room.getWest());
-		visit(id, room.getEast());
-    }
 
-    private void visit(final int form, final Integer to) {
-    	if(Objects.nonNull(to)) {
+	public VisitResult visit() {
+		visit(start);
+		return path;
+	}
+
+	private void visit(final int id) {
+		final Room room = rooms.get(id);
+
+		if(Objects.isNull(room)) return;
+
+		path.add(room);
+
+		toFind.removeAll(room.getObjects());
+
+		final Integer[] neighborhood = {room.getEast(), room.getWest(), room.getSouth(), room.getNorth()};
+		int i = neighborhood.length;
+
+		while(!toFind.isEmpty() && i != 0) {
+			visit(id, neighborhood[--i]);
+		}
+	}
+
+	private void visit(final int form, final Integer to) {
+		if (Objects.nonNull(to)) {
 			final Visited path = new Visited(form, to);
-			if(!visited.contains(path)) {
+			if (!visited.contains(path)) {
 				visited.add(path);
 				visit(to);
 			}
 		}
-    }
+	}
 }

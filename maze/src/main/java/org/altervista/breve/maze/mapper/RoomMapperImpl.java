@@ -4,8 +4,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import org.altervista.breve.maze.model.Labyrinth;
 import org.altervista.breve.maze.model.Room;
-import org.altervista.breve.maze.model.Rooms;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -20,7 +20,7 @@ public class RoomMapperImpl implements RoomMapper {
 				.getResource(map)
 				.getFile();
 		
-		return mapper.readValue(new File(resource), Rooms.class).getRooms();
+		return mapper.readValue(new File(resource), Labyrinth.class).getRooms();
 	}
 
 }

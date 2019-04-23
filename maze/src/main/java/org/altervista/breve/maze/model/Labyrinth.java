@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.Setter;
 
 @Data
-public class Rooms {
+public class Labyrinth {
 	
 	@Setter(AccessLevel.NONE)
 	private List<Room> rooms;
