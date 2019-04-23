@@ -18,14 +18,15 @@ public class App {
 	
     public static void main( String[] args ) throws IOException {
     	final RoomMapper mapper = new RoomMapperImpl();
-    	final Map<Integer, Room> map = mapper.getRooms("maze-1.json")
+    	final Map<Integer, Room> map = mapper.getRooms("maze-2.json")
     			.stream()
     			.collect(Collectors.toMap(Room::getId, Function.identity()));
     	
-    	final int start = 2;
+    	final int start = 4;
     	final Set<RoomObject> objects = new HashSet<>();
     	objects.add(new RoomObject("Knife"));
     	objects.add(new RoomObject("Potted Plant"));
+    	objects.add(new RoomObject("Pillow"));
     	
     	final Walker walker = new WalkerImpl(map, start, objects);
     	
