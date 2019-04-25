@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -43,7 +44,7 @@ public class WalkerImplTest {
 	
 	@Test
 	public void visitCase1() {
-		final Map<Integer, Room> map = mapper.getRooms("maze-1.json")
+		final Map<Integer, Room> map = mapper.getRooms(new File(""))
     			.stream()
     			.collect(Collectors.toMap(Room::getId, Function.identity()));
 		
@@ -62,7 +63,7 @@ public class WalkerImplTest {
 	
 	@Test
 	public void visitCase2() {
-		final Map<Integer, Room> map = mapper.getRooms("maze-2.json")
+		final Map<Integer, Room> map = mapper.getRooms(new File(""))
     			.stream()
     			.collect(Collectors.toMap(Room::getId, Function.identity()));
 		
