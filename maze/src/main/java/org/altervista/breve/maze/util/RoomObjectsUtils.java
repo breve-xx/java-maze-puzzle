@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RoomObjectsUtils {
 
-    public static Set<RoomObject> buildObjects(String... objects) {
+    public static Set<RoomObject> buildObjects(String[] objects) {
         final Set<RoomObject> set = new HashSet<>();
         
         Arrays.stream(objects).forEach(o -> set.add(new RoomObject(o)));

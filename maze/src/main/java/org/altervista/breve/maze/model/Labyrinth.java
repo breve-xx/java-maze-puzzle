@@ -7,8 +7,10 @@ import lombok.Data;
 import lombok.Setter;
 
 @Data
+@Setter(AccessLevel.NONE)
 public class Labyrinth {
 	
-	@Setter(AccessLevel.NONE)
+	private int start;
+	private String[] objects;
 	private List<Room> rooms;
 }

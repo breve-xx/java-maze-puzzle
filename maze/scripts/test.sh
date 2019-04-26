@@ -1,3 +1,1 @@
-cd ..
-
 mvn clean test
