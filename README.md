@@ -26,7 +26,7 @@ docker run -v $(pwd):/mnt -p 9090:9090 -w /mnt mytest ./scripts/test.sh
 The `run.sh` script can be used to run the application, if an executable `.jar` is not present it will be built.
 ##### A docker container that runs the `run.sh` script can be created using
 ```
-docker run -v $(pwd):/mnt -p 9090:9090 -w /mnt mytest ./scripts/test.sh
+docker run -v $(pwd):/mnt -p 9090:9090 -w /mnt mytest ./scripts/run.sh
 ```
 ##### An additional volume that provides additional mazes to the application can be mounted using
 ```
